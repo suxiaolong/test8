@@ -23,38 +23,11 @@ jobs: # 工作流
         uses: actions/setup-node@v1 # 作用：安装nodejs
         with:
           node-version: ${{ matrix.node-version }} # 版本
-#      - name: pull-request
-#          uses: repo-sync/pull-request@v2
-#          with:
-#            github_token: ${{ secrets.ACCESS_TOKEN }}
-      - uses: actions/labeler@v3
-          with:
-            repo-token: ${{ secrets.ACCESS_TOKEN }}
-
-#      - name: Sync files # 步骤3 （只提交到github可以使用这个步骤）
-#        uses: SamKirkland/FTP-Deploy-Action@4.1.0 # 作用：将项目构建和部署到github。 https://github.com/JamesIves/github-pages-deploy-action
-#        with: # 设置环境变量
-#          server: 118.25.22.194 # 要部署的文件夹所在的分支.
-#          password: ${{ secrets.ftp_password }} # toKen私密变量
-#          username: ftpxiaosu # 部署到的分支
-#          local-dir: ./docs/ # 要部署的文件夹.
-#          server-dir: ./opt/ # 要部署的文件夹.
-
-#      - name: FTP Deploy
-#        uses: SamKirkland/FTP-Deploy-Action@2.0.0
-#        env:
-#          FTP_SERVER: 118.25.22.194
-#          FTP_USERNAME: ftpxiaosu
-#          FTP_PASSWORD: ${{ secrets.ftp_password }}
-#          LOCAL_DIR: docs
-#          REMOTE_DIR: /home/ftpxiaosu
-#          ARGS: --delete --transfer-all --exclude=logreport --verbose
-
-#      - name: Build and Deploy # 步骤3 （只提交到github可以使用这个步骤）
-#        uses: JamesIves/github-pages-deploy-action@4.1.1 # 作用：将项目构建和部署到github。 https://github.com/JamesIves/github-pages-deploy-action
-#        env: # 设置环境变量
-#          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # toKen私密变量
-#          BASE_BRANCH: main # 要部署的文件夹所在的分支.
-#          BRANCH: gh-pages # 部署到的分支
-#          FOLDER: docs # 要部署的文件夹.
-#          BUILD_SCRIPT: cd docs && echo 'test6.xiaolongsu.cn' > CNAME && cd - # 部署前要执行的命令（记得cd进入某个目录后，后面要cd -退回开始的目录）
+      - name: Build and Deploy # 步骤3 （只提交到github可以使用这个步骤）
+          uses: JamesIves/github-pages-deploy-action@4.1.1 # 作用：将项目构建和部署到github。 https://github.com/JamesIves/github-pages-deploy-action
+          env: # 设置环境变量
+            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # toKen私密变量
+            BASE_BRANCH: main # 要部署的文件夹所在的分支.
+            BRANCH: gh-pages # 部署到的分支
+            FOLDER: docs # 要部署的文件夹.
+            BUILD_SCRIPT: cd docs && echo 'test6.xiaolongsu.cn' > CNAME && cd - # 部署前要执行的命令
